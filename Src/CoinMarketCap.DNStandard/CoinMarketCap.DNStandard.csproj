@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>CoinMarketCap</AssemblyName>
+    <RootNamespace>CoinMarketCap</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Authors>Dan Miranda</Authors>
+    <Company>Binamedia</Company>
+    <SignAssembly>true</SignAssembly>
+    <PackageId>CoinMarketCapClient</PackageId>
+    <Product>CoinMarketCapClient</Product>
+    <Description>A C# wrapper around the https://coinmarketcap.com API.</Description>
+    <Copyright>Copyright ©Binamedia 2017</Copyright>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/binamonk/CoinMarketCapClient/master/LICENSE.md</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/binamonk/CoinMarketCapClient</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/binamonk/CoinMarketCapClient/master/CoinMarketCap.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/binamonk/CoinMarketCapClient</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>btc, eth, bitcoin, coinmarketcap, api, coin, coinmarket</PackageTags>
+    <PackageReleaseNotes>1.0.0
+Initial release.</PackageReleaseNotes>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DocumentationFile>bin\Release\netstandard2.0\CoinMarketCap.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <Import Project="..\CoinMarketCap.Core\CoinMarketCap.Core.projitems" Label="Shared" />
+
+</Project>

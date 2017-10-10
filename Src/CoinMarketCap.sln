@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C783C050-E648-44E9-918A-45754F141D4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinMarketCap.Tests", "CoinMarketCap.Tests\CoinMarketCap.Tests.csproj", "{194636E1-A9B1-41D6-ADF9-A016E6B35BAD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoinMarketCap.DNStandard", "CoinMarketCap.DNStandard\CoinMarketCap.DNStandard.csproj", "{72FBC78A-E291-42B7-823D-B1DD7D490676}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "CoinMarketCap.Core", "CoinMarketCap.Core\CoinMarketCap.Core.shproj", "{AD4105AA-E093-4182-B72C-C23FE89C4439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoinMarketCap.PCL", "CoinMarketCap.PCL\CoinMarketCap.PCL.csproj", "{259F3014-2DEF-453F-966C-84BD3AF087E2}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		CoinMarketCap.Core\CoinMarketCap.Core.projitems*{259f3014-2def-453f-966c-84bd3af087e2}*SharedItemsImports = 4
+		CoinMarketCap.Core\CoinMarketCap.Core.projitems*{ad4105aa-e093-4182-b72c-c23fe89c4439}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{194636E1-A9B1-41D6-ADF9-A016E6B35BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194636E1-A9B1-41D6-ADF9-A016E6B35BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194636E1-A9B1-41D6-ADF9-A016E6B35BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194636E1-A9B1-41D6-ADF9-A016E6B35BAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72FBC78A-E291-42B7-823D-B1DD7D490676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72FBC78A-E291-42B7-823D-B1DD7D490676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72FBC78A-E291-42B7-823D-B1DD7D490676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72FBC78A-E291-42B7-823D-B1DD7D490676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{259F3014-2DEF-453F-966C-84BD3AF087E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{259F3014-2DEF-453F-966C-84BD3AF087E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{259F3014-2DEF-453F-966C-84BD3AF087E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{259F3014-2DEF-453F-966C-84BD3AF087E2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{194636E1-A9B1-41D6-ADF9-A016E6B35BAD} = {C783C050-E648-44E9-918A-45754F141D4A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CD656FE7-9C41-422E-B928-1E71C17D61A8}
+	EndGlobalSection
+EndGlobal

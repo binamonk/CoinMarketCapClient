@@ -37,7 +37,7 @@ namespace CoinMarketCap.Tests
             var ticker = await client.GetTickerListAsync(5,Enums.ConvertEnum.EUR);
             Assert.IsNotNull(ticker);
             Assert.AreEqual(ticker.Count, 5);
-            Assert.Greater(ticker.First().PriceOther["eur"], 0);
+            Assert.Greater(ticker.First().PriceOther[Enums.ConvertEnum.EUR], 0);
             Assert.Less(ticker.First().LastUpdated, DateTime.Now);
         }
 
@@ -48,7 +48,7 @@ namespace CoinMarketCap.Tests
             var ticker = await client.GetTickerAsync("bitcoin");
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "bitcoin");
-            Assert.Greater(ticker.PriceOther["usd"], 0);
+            Assert.Greater(ticker.PriceOther[Enums.ConvertEnum.USD], 0);
             Assert.Less(ticker.LastUpdated, DateTime.Now);
         }
 
@@ -59,7 +59,7 @@ namespace CoinMarketCap.Tests
             var ticker = await client.GetTickerAsync("ethereum");
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "ethereum");
-            Assert.Greater(ticker.PriceOther["usd"], 0);
+            Assert.Greater(ticker.PriceOther[Enums.ConvertEnum.USD], 0);
             Assert.Less(ticker.LastUpdated, DateTime.Now);
         }
 
@@ -70,7 +70,7 @@ namespace CoinMarketCap.Tests
             var ticker = await client.GetTickerAsync("ripple");
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "ripple");
-            Assert.Greater(ticker.PriceOther["usd"], 0);
+            Assert.Greater(ticker.PriceOther[Enums.ConvertEnum.USD], 0);
             Assert.Less(ticker.LastUpdated, DateTime.Now);
         }
 

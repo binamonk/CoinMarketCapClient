@@ -67,7 +67,7 @@ namespace CoinMarketCap.Tests
         public async Task GetTicker_Ripple_Success()
         {
             var client = CoinMarketCapClient.GetInstance();
-            var ticker = await client.GetTickerAsync("ripple");
+            var ticker = await client.GetTickerAsync("ripple", Enums.ConvertEnum.USD);
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "ripple");
             Assert.Greater(ticker.PriceOther[Enums.ConvertEnum.USD], 0);

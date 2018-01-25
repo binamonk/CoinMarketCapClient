@@ -31,6 +31,15 @@ namespace CoinMarketCap.Tests
         }
 
         [Test]
+        public async Task GetTickerList_All_Success()
+        {
+            var client = CoinMarketCapClient.GetInstance();
+            var ticker = await client.GetTickerListAsync(0);
+            Assert.IsNotNull(ticker);
+            Assert.Less(ticker.First().LastUpdated, DateTime.Now);
+        }
+
+        [Test]
         public async Task GetTickerList_Limit5ConvertEUR_Success()
         {
             var client = CoinMarketCapClient.GetInstance();

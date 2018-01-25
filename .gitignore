@@ -152,3 +152,4 @@ UpgradeLog*.htm
 # Microsoft Fakes
 FakesAssemblies/
 *.userprefs
+/Src/CoinMarketCap.Tests/packages.config

@@ -37,10 +37,10 @@ namespace CoinMarketCap
         /// <param name="limit">Limit the amount of Tickers.</param>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
         /// <returns></returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int? limit = 0, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int? limit = null, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
         {
             var uri = new StringBuilder("/v1/ticker/?");
-            uri.Append(limit > 0 ? $"limit={limit}&" : "");
+            uri.Append(limit !=null ? $"limit={limit}&" : "");
             uri.Append(Enums.ConvertEnum.USD != convert ? $"convert={convert.ToString()}" : "");
             var response = await _client.GetStringAsync(uri.ToString());
             var obj = JsonConvert.DeserializeObject<List<Entities.TickerEntity>>(response);

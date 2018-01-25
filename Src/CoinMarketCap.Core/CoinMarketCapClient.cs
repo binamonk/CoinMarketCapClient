@@ -5,15 +5,20 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CoinMarketCap.Core;
 
 namespace CoinMarketCap
 {
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    public class CoinMarketCapClient
+    public class CoinMarketCapClient : ICoinMarketCapClient
     {
-        HttpClient _client;
+
+        private bool _isDisposed;
+
+
+        readonly HttpClient _client;
 
         static CoinMarketCapClient s_instance;
 
@@ -23,12 +28,26 @@ namespace CoinMarketCap
         /// <returns>CoinMarketCapClient instance.</returns>
         public static CoinMarketCapClient GetInstance() => s_instance = s_instance ?? new CoinMarketCapClient();
 
-        CoinMarketCapClient()
+
+        /// <summary>
+        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
+        /// </summary>
+        /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
+        public CoinMarketCapClient(HttpClientHandler httpClientHandler)
         {
-            _client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://api.coinmarketcap.com/")
-            };
+            if(httpClientHandler!=null)
+                this._client = new HttpClient(httpClientHandler, true)
+                {
+                    BaseAddress = new Uri("https://api.coinmarketcap.com/")
+                };
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
+        /// </summary>
+        public CoinMarketCapClient()
+            : this(new HttpClientHandler())
+        {
         }
 
         /// <summary>
@@ -37,10 +56,10 @@ namespace CoinMarketCap
         /// <param name="limit">Limit the amount of Tickers.</param>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
         /// <returns></returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int? limit = 0, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int? limit = null, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
         {
             var uri = new StringBuilder("/v1/ticker/?");
-            uri.Append(limit > 0 ? $"limit={limit}&" : "");
+            uri.Append(limit !=null ? $"limit={limit}&" : "");
             uri.Append(Enums.ConvertEnum.USD != convert ? $"convert={convert.ToString()}" : "");
             var response = await _client.GetStringAsync(uri.ToString());
             var obj = JsonConvert.DeserializeObject<List<Entities.TickerEntity>>(response);
@@ -76,5 +95,30 @@ namespace CoinMarketCap
             var obj = JsonConvert.DeserializeObject<Entities.GlobalDataEntity>(response);
             return obj;
         }
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or
+		/// resetting unmanaged resources.
+		/// </summary>
+		/// <param name="disposing">True to release both managed and unmanaged resources; false to
+		/// release only unmanaged resources.</param>
+		internal virtual void Dispose(bool disposing)
+		{
+			if (!this._isDisposed)
+			{
+				if (disposing)
+				{
+					this._client?.Dispose();
+				}
+				this._isDisposed = true;
+			}
+		}
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or
+        /// resetting unmanaged resources.
+        /// </summary>
+        /// <seealso cref="M:System.IDisposable.Dispose()"/>
+        public void Dispose() => this.Dispose(true);
     }
 }

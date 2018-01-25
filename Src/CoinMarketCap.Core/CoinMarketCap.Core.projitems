@@ -13,5 +13,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Entities\GlobalDataEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\TickerEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ConvertEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICoinMarketCapClient.cs" />
   </ItemGroup>
 </Project>

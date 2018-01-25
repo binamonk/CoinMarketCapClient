@@ -5,15 +5,20 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CoinMarketCap.Core;
 
 namespace CoinMarketCap
 {
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    public class CoinMarketCapClient
+    public class CoinMarketCapClient : ICoinMarketCapClient
     {
-        HttpClient _client;
+
+        private bool _isDisposed;
+
+
+        readonly HttpClient _client;
 
         static CoinMarketCapClient s_instance;
 
@@ -23,12 +28,26 @@ namespace CoinMarketCap
         /// <returns>CoinMarketCapClient instance.</returns>
         public static CoinMarketCapClient GetInstance() => s_instance = s_instance ?? new CoinMarketCapClient();
 
-        CoinMarketCapClient()
+
+        /// <summary>
+        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
+        /// </summary>
+        /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
+        public CoinMarketCapClient(HttpClientHandler httpClientHandler)
         {
-            _client = new HttpClient()
-            {
-                BaseAddress = new Uri("https://api.coinmarketcap.com/")
-            };
+            if(httpClientHandler!=null)
+                this._client = new HttpClient(httpClientHandler, true)
+                {
+                    BaseAddress = new Uri("https://api.coinmarketcap.com/")
+                };
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
+        /// </summary>
+        public CoinMarketCapClient()
+            : this(new HttpClientHandler())
+        {
         }
 
         /// <summary>
@@ -76,5 +95,30 @@ namespace CoinMarketCap
             var obj = JsonConvert.DeserializeObject<Entities.GlobalDataEntity>(response);
             return obj;
         }
+
+		/// <summary>
+		/// Performs application-defined tasks associated with freeing, releasing, or
+		/// resetting unmanaged resources.
+		/// </summary>
+		/// <param name="disposing">True to release both managed and unmanaged resources; false to
+		/// release only unmanaged resources.</param>
+		internal virtual void Dispose(bool disposing)
+		{
+			if (!this._isDisposed)
+			{
+				if (disposing)
+				{
+					this._client?.Dispose();
+				}
+				this._isDisposed = true;
+			}
+		}
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or
+        /// resetting unmanaged resources.
+        /// </summary>
+        /// <seealso cref="M:System.IDisposable.Dispose()"/>
+        public void Dispose() => this.Dispose(true);
     }
 }

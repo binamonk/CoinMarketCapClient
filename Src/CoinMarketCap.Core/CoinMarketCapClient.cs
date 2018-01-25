@@ -29,11 +29,11 @@ namespace CoinMarketCap
         public static CoinMarketCapClient GetInstance() => s_instance = s_instance ?? new CoinMarketCapClient();
 
 
-        /// <summary>
-        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
-        /// </summary>
-        /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
-        public CoinMarketCapClient(HttpClientHandler httpClientHandler)
+		/// <summary>
+		/// Initializes a new instance of the CoinMarketCapClient class.
+		/// </summary>
+		/// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
+		public CoinMarketCapClient(HttpClientHandler httpClientHandler)
         {
             if (httpClientHandler != null)
             {
@@ -44,10 +44,10 @@ namespace CoinMarketCap
             }
         }
 
-        /// <summary>
-        /// Initializes a new instance of the CryptoCompare.CryptoCompareClient class.
-        /// </summary>
-        public CoinMarketCapClient()
+		/// <summary>
+		/// Initializes a new instance of the CoinMarketCapClient class.
+		/// </summary>
+		public CoinMarketCapClient()
             : this(new HttpClientHandler())
         {
         }

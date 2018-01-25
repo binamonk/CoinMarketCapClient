@@ -6,21 +6,30 @@
     <RootNamespace>CoinMarketCap</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Authors>Dan Miranda</Authors>
+    <Authors>Dan Miranda, Anton Yaroshenko</Authors>
     <Company>Binamedia</Company>
     <SignAssembly>true</SignAssembly>
     <PackageId>CoinMarketCapClient</PackageId>
     <Product>CoinMarketCapClient</Product>
     <Description>A C# wrapper around the https://coinmarketcap.com API.</Description>
-    <Copyright>Copyright ©Binamedia 2017</Copyright>
+    <Copyright>Copyright ©Binamedia 2018</Copyright>
     <PackageLicenseUrl>https://raw.githubusercontent.com/binamonk/CoinMarketCapClient/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/binamonk/CoinMarketCapClient</PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/binamonk/CoinMarketCapClient/master/CoinMarketCap.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/binamonk/CoinMarketCapClient</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>btc, eth, bitcoin, coinmarketcap, api, coin, coinmarket</PackageTags>
-    <PackageReleaseNotes>1.0.0
+    <PackageReleaseNotes>1.1.1
+Comments added to the code in order to activate intellisense. 
+
+1.0.2 
+Comments added to the code in order to activate intellisense. 
+
+1.0.0
 Initial release.</PackageReleaseNotes>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.1.0</AssemblyVersion>
+    <FileVersion>1.1.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

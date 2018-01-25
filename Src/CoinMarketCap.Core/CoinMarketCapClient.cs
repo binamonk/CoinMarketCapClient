@@ -12,7 +12,7 @@ namespace CoinMarketCap
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    public class CoinMarketCapClient : ICoinMarketCapClient
+    public class CoinMarketCapClient : ICoinMarketCapClient, IDisposable
     {
 
         private bool _isDisposed;
@@ -35,11 +35,13 @@ namespace CoinMarketCap
         /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
         public CoinMarketCapClient(HttpClientHandler httpClientHandler)
         {
-            if(httpClientHandler!=null)
+            if (httpClientHandler != null)
+            {
                 this._client = new HttpClient(httpClientHandler, true)
                 {
                     BaseAddress = new Uri("https://api.coinmarketcap.com/")
                 };
+            }
         }
 
         /// <summary>

@@ -21,7 +21,8 @@ var tickerList5OnEuros = await client.GetTickerListAsync(5, CoinMarketCap.Enums.
 var value = tickerList5OnEuros.First().PriceOther[CoinMarketCap.Enums.ConvertEnum.EUR];
 
 // Ask for bitcoin ticker.
-var ticker = await client.GetTickerAsync("bitcoin");```
+var ticker = await client.GetTickerAsync("bitcoin");
+```
 
 ### Singleton
 ```csharp

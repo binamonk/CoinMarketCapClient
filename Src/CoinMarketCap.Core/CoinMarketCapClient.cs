@@ -12,11 +12,11 @@ namespace CoinMarketCap
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    public class CoinMarketCapClient : ICoinMarketCapClient
+    public class CoinMarketCapClient : ICoinMarketCapClient, IDisposable
     {
 
-        private bool _isDisposed;
-
+        bool _isDisposed;
+        readonly string _uri = "https://api.coinmarketcap.com/";
 
         readonly HttpClient _client;
 
@@ -47,7 +47,7 @@ namespace CoinMarketCap
             {
                 this._client = new HttpClient(httpClientHandler, true)
                 {
-                    BaseAddress = new Uri("https://api.coinmarketcap.com/")
+                    BaseAddress = new Uri(_uri)
                 };
             }
         }
@@ -71,8 +71,8 @@ namespace CoinMarketCap
         public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int limit, Enums.ConvertEnum convert)
         {
             var uri = new StringBuilder("/v1/ticker/?");
-            uri.Append(limit !=null ? $"limit={limit}&" : "");
-            uri.Append(Enums.ConvertEnum.USD != convert ? $"convert={convert.ToString()}" : "");
+            uri.Append($"limit={limit}&");
+            uri.Append($"convert={convert.ToString()}");
             var response = await _client.GetStringAsync(uri.ToString());
             var obj = JsonConvert.DeserializeObject<List<Entities.TickerEntity>>(response);
             return obj;
@@ -83,20 +83,23 @@ namespace CoinMarketCap
         /// </summary>
         /// <param name="limit">Limit the amount of Tickers.</param>
         /// <returns>Returns the ticker list with their volumes in USD.</returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int limit) => await GetTickerListAsync(limit, Enums.ConvertEnum.USD);
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int limit) => 
+            await GetTickerListAsync(limit, Enums.ConvertEnum.USD).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves a list of Tickers.
         /// </summary>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
         /// <returns>Returns all available tickers with their volumes.</returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(Enums.ConvertEnum convert) => await GetTickerListAsync(0, convert);
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(Enums.ConvertEnum convert) => 
+            await GetTickerListAsync(0, convert).ConfigureAwait(false);
 
         /// <summary>
         /// Retrieves a list of Tickers
         /// </summary>
         /// <returns>Returns all available tickers with their volumes in USD.</returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync() => await GetTickerListAsync(0, Enums.ConvertEnum.USD);
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync() => 
+            await GetTickerListAsync(0, Enums.ConvertEnum.USD).ConfigureAwait(false);
         #endregion
 
         #region GetTicker
@@ -122,7 +125,7 @@ namespace CoinMarketCap
         /// <param name="cryptoCurrency">The Ticker name of the desired cryptoCurrency.</param>
         /// <returns>Returns the ticker in USD.</returns>
         public async Task<Entities.TickerEntity> GetTickerAsync(string cryptoCurrency) => 
-            await GetTickerAsync(cryptoCurrency, Enums.ConvertEnum.USD);
+            await GetTickerAsync(cryptoCurrency, Enums.ConvertEnum.USD).ConfigureAwait(false);
 
         #endregion
 
@@ -145,7 +148,8 @@ namespace CoinMarketCap
         /// Retrieves the global market cap for crypto currencies.
         /// </summary>
         /// <returns>A GlobalDataEntity with the requested information in USD.</returns>
-        public async Task<Entities.GlobalDataEntity> GetGlobalDataAsync() => await GetGlobalDataAsync(Enums.ConvertEnum.USD);
+        public async Task<Entities.GlobalDataEntity> GetGlobalDataAsync() =>
+            await GetGlobalDataAsync(Enums.ConvertEnum.USD).ConfigureAwait(false);
         #endregion
 
         /// <summary>

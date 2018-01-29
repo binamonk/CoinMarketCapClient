@@ -9,7 +9,7 @@ namespace CoinMarketCap.Tests
     [TestFixture]
     public class CoinMarketCapTests
     {
-        CoinMarketCapClient _client;
+        readonly CoinMarketCapClient _client;
 
         public CoinMarketCapTests() {
             _client = CoinMarketCapClient.GetInstance();
@@ -34,7 +34,17 @@ namespace CoinMarketCap.Tests
             Assert.Less(ticker.First().LastUpdated, DateTime.Now);
         }
 
-       [Test]
+        [Test]
+        public async Task GetTickerList_Unlimited_Success()
+        {
+            var ticker = await _client.GetTickerListAsync(0);
+            Assert.IsNotNull(ticker);
+            Assert.Greater(ticker.Count, 100);
+            Assert.Greater(ticker.First().PriceUsd, 0);
+            Assert.Less(ticker.First().LastUpdated, DateTime.Now);
+        }
+
+        [Test]
         public async Task GetTickerList_Limit5ConvertEUR_Success()
         {
             var ticker = await _client.GetTickerListAsync(5,Enums.ConvertEnum.EUR);

@@ -7,12 +7,12 @@ namespace CoinMarketCap.Tests
 {
 
     [TestFixture]
-    public class CoinMarketCapTests
+    public class ClientInstancedTests
     {
         CoinMarketCapClient _client;
 
-        public CoinMarketCapTests() {
-            _client = CoinMarketCapClient.GetInstance();
+        public ClientInstancedTests() {
+            _client = new CoinMarketCapClient();
         }
 
         [Test]

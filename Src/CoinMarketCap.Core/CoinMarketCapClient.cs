@@ -28,12 +28,19 @@ namespace CoinMarketCap
         /// <returns>CoinMarketCapClient instance.</returns>
         public static CoinMarketCapClient GetInstance() => s_instance = s_instance ?? new CoinMarketCapClient();
 
+        /// <summary>
+        /// Retrieves the an instance of the CoinMarketCapClient.
+        /// </summary>
+        /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
+        /// <returns>CoinMarketCapClient instance.</returns>
+        public static CoinMarketCapClient GetInstance(HttpClientHandler httpClientHandler) => 
+            s_instance = s_instance ?? new CoinMarketCapClient(httpClientHandler);
 
-		/// <summary>
-		/// Initializes a new instance of the CoinMarketCapClient class.
-		/// </summary>
-		/// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs</param>
-		public CoinMarketCapClient(HttpClientHandler httpClientHandler)
+        /// <summary>
+        /// Initializes a new instance of the CoinMarketCapClient class.
+        /// </summary>
+        /// <param name="httpClientHandler">Custom HTTP client handler. Can be used to define proxy settigs.</param>
+        public CoinMarketCapClient(HttpClientHandler httpClientHandler)
         {
             if (httpClientHandler != null)
             {

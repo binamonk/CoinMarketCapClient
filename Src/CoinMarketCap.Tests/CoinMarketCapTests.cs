@@ -18,7 +18,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTickerList_NoParams_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerListAsync();
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Count, 0);
@@ -28,7 +27,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTickerList_Limit10_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerListAsync(10);
             Assert.IsNotNull(ticker);
             Assert.AreEqual(ticker.Count, 10);
@@ -39,7 +37,6 @@ namespace CoinMarketCap.Tests
        [Test]
         public async Task GetTickerList_Limit5ConvertEUR_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerListAsync(5,Enums.ConvertEnum.EUR);
             Assert.IsNotNull(ticker);
             Assert.AreEqual(ticker.Count, 5);
@@ -50,7 +47,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTicker_Bitcoin_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerAsync("bitcoin");
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "bitcoin");
@@ -61,7 +57,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTicker_Ethereum_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerAsync("ethereum");
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "ethereum");
@@ -72,7 +67,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTicker_Ripple_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerAsync("ripple", Enums.ConvertEnum.USD);
             Assert.IsNotNull(ticker);
             Assert.Greater(ticker.Name, "ripple");
@@ -82,7 +76,6 @@ namespace CoinMarketCap.Tests
 
         [Test]
         public async Task GetGlobalDataAsync_Default_Success() {
-            _client = CoinMarketCapClient.GetInstance();
             var globalData = await _client.GetGlobalDataAsync();
             Assert.IsNotNull(globalData);
             Assert.Greater(globalData.MarketCapUsd, 0);
@@ -91,7 +84,6 @@ namespace CoinMarketCap.Tests
         [Test]
         public async Task GetTickerList_All_Success()
         {
-            _client = CoinMarketCapClient.GetInstance();
             var ticker = await _client.GetTickerListAsync(0);
             Assert.IsNotNull(ticker);
             Assert.Less(ticker.First().LastUpdated, DateTime.Now);

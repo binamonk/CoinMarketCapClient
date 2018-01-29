@@ -12,7 +12,7 @@ namespace CoinMarketCap
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    public class CoinMarketCapClient : ICoinMarketCapClient, IDisposable
+    public class CoinMarketCapClient : ICoinMarketCapClient
     {
 
         private bool _isDisposed;
@@ -22,6 +22,7 @@ namespace CoinMarketCap
 
         static CoinMarketCapClient s_instance;
 
+        #region Constructors
         /// <summary>
         /// Retrieves the an instance of the CoinMarketCapClient.
         /// </summary>
@@ -58,14 +59,16 @@ namespace CoinMarketCap
             : this(new HttpClientHandler())
         {
         }
+        #endregion
 
+        #region GetTickerList
         /// <summary>
         /// Retrieves a list of Tickers.
         /// </summary>
         /// <param name="limit">Limit the amount of Tickers.</param>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
-        /// <returns></returns>
-        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int? limit = null, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
+        /// <returns>Returns the ticker list with their volumes.</returns>
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int limit, Enums.ConvertEnum convert)
         {
             var uri = new StringBuilder("/v1/ticker/?");
             uri.Append(limit !=null ? $"limit={limit}&" : "");
@@ -76,12 +79,34 @@ namespace CoinMarketCap
         }
 
         /// <summary>
+        /// Retrieves a list of Tickers.
+        /// </summary>
+        /// <param name="limit">Limit the amount of Tickers.</param>
+        /// <returns>Returns the ticker list with their volumes in USD.</returns>
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(int limit) => await GetTickerListAsync(limit, Enums.ConvertEnum.USD);
+
+        /// <summary>
+        /// Retrieves a list of Tickers.
+        /// </summary>
+        /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
+        /// <returns>Returns all available tickers with their volumes.</returns>
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync(Enums.ConvertEnum convert) => await GetTickerListAsync(0, convert);
+
+        /// <summary>
+        /// Retrieves a list of Tickers
+        /// </summary>
+        /// <returns>Returns all available tickers with their volumes in USD.</returns>
+        public async Task<List<Entities.TickerEntity>> GetTickerListAsync() => await GetTickerListAsync(0, Enums.ConvertEnum.USD);
+        #endregion
+
+        #region GetTicker
+        /// <summary>
         /// Retrieves the Ticker for given cryptoCurrency value.
         /// </summary>
         /// <param name="cryptoCurrency">The Ticker name of the desired cryptoCurrency.</param>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
-        /// <returns></returns>
-        public async Task<Entities.TickerEntity> GetTickerAsync(string cryptoCurrency, Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
+        /// <returns>Returns the ticker.</returns>
+        public async Task<Entities.TickerEntity> GetTickerAsync(string cryptoCurrency, Enums.ConvertEnum convert)
         {
             StringBuilder uri = new StringBuilder();
             uri.Append($"/v1/ticker/{cryptoCurrency}/?");
@@ -92,11 +117,22 @@ namespace CoinMarketCap
         }
 
         /// <summary>
+        /// Retrieves the Ticker for given cryptoCurrency value.
+        /// </summary>
+        /// <param name="cryptoCurrency">The Ticker name of the desired cryptoCurrency.</param>
+        /// <returns>Returns the ticker in USD.</returns>
+        public async Task<Entities.TickerEntity> GetTickerAsync(string cryptoCurrency) => 
+            await GetTickerAsync(cryptoCurrency, Enums.ConvertEnum.USD);
+
+        #endregion
+
+        #region GetlGlobalData
+        /// <summary>
         /// Retrieves the global market cap for crypto currencies.
         /// </summary>
         /// <param name="convert">Convert the crypto volumes to the given Fiat currency.</param>
         /// <returns>A GlobalDataEntity with the requested information in the given currency.</returns>
-        public async Task<Entities.GlobalDataEntity> GetGlobalDataAsync(Enums.ConvertEnum convert = Enums.ConvertEnum.USD)
+        public async Task<Entities.GlobalDataEntity> GetGlobalDataAsync(Enums.ConvertEnum convert)
         {
             StringBuilder uri = new StringBuilder($"/v1/global/?");
             uri.Append(Enums.ConvertEnum.USD != convert ? $"convert={convert.ToString()}" : "");
@@ -105,13 +141,20 @@ namespace CoinMarketCap
             return obj;
         }
 
-		/// <summary>
-		/// Performs application-defined tasks associated with freeing, releasing, or
-		/// resetting unmanaged resources.
-		/// </summary>
-		/// <param name="disposing">True to release both managed and unmanaged resources; false to
-		/// release only unmanaged resources.</param>
-		internal virtual void Dispose(bool disposing)
+        /// <summary>
+        /// Retrieves the global market cap for crypto currencies.
+        /// </summary>
+        /// <returns>A GlobalDataEntity with the requested information in USD.</returns>
+        public async Task<Entities.GlobalDataEntity> GetGlobalDataAsync() => await GetGlobalDataAsync(Enums.ConvertEnum.USD);
+        #endregion
+
+        /// <summary>
+        /// Performs application-defined tasks associated with freeing, releasing, or
+        /// resetting unmanaged resources.
+        /// </summary>
+        /// <param name="disposing">True to release both managed and unmanaged resources; false to
+        /// release only unmanaged resources.</param>
+        internal virtual void Dispose(bool disposing)
 		{
 			if (!this._isDisposed)
 			{

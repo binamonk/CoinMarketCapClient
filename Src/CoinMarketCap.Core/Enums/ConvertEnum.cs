@@ -12,6 +12,10 @@ namespace CoinMarketCap.Enums
     public enum ConvertEnum
     {
         /// <summary>
+        /// United States Dollar.
+        /// </summary>
+        USD = 0, // To enforce default value.
+        /// <summary>
         /// Australian Dollar.
         /// </summary>
         AUD,
@@ -66,10 +70,6 @@ namespace CoinMarketCap.Enums
         /// <summary>
         /// Russian Rubble.
         /// </summary>
-        RUB,
-        /// <summary>
-        /// United States Dollar.
-        /// </summary>
-        USD
+        RUB
     }
 }

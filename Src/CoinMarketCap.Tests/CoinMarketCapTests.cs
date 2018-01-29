@@ -88,6 +88,13 @@ namespace CoinMarketCap.Tests
             Assert.IsNotNull(ticker);
             Assert.Less(ticker.First().LastUpdated, DateTime.Now);
         }
-       
+
+        [Test]
+        public async Task GetTickerList_NamedParam_Success()
+        {
+            var ticker = await _client.GetTickerListAsync(limit: 0);
+            Assert.IsNotNull(ticker);
+            Assert.Less(ticker.First().LastUpdated, DateTime.Now);
+        }
     }
 }

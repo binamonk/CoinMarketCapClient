@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClientInstancedV2Tests.cs" />
     <Compile Include="ClientInstancedTests.cs" />
     <Compile Include="CoinMarketCapTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

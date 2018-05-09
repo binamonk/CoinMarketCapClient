@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CoinMarketCap.Enums
 {
     /// <summary>
-    /// Available Fiat currencies in CoinMarketCap Api.
+    /// Available Fiat currencies and cryptos for conversion in CoinMarketCap Api V2.
     /// </summary>
-    [Obsolete("Public API Version 1 will be taken offline on November 30th, 2018. Please modify your application to use Version 2 prior to shutdown.")]
-    public enum ConvertEnum
+    public enum CurrenciesEnum
     {
         /// <summary>
         /// United States Dollar.
@@ -33,9 +30,15 @@ namespace CoinMarketCap.Enums
         /// </summary>
         CHF,
         /// <summary>
+        /// Chilean Peso.
+        /// </summary>
+        CLP,
+        /// <summary>
         /// Chinese Yuan.
         /// </summary>
         CNY,
+        CZK,
+        DKK,
         /// <summary>
         /// Euro.
         /// </summary>
@@ -48,10 +51,12 @@ namespace CoinMarketCap.Enums
         /// Hong Kong Dollar
         /// </summary>
         HKD,
+        HUF,
         /// <summary>
         /// Indonesian Rupiah.
         /// </summary>
         IDR,
+        ILS,
         /// <summary>
         /// Indian Rupee.
         /// </summary>
@@ -68,9 +73,26 @@ namespace CoinMarketCap.Enums
         /// Mexican Peso.
         /// </summary>
         MXN,
+        MYR,
+        NOK,
+        NZD,
+        PHP,
+        PKR,
+        PLN,
         /// <summary>
         /// Russian Rubble.
         /// </summary>
-        RUB
+        RUB,
+        SEK,
+        SGD,
+        THB,
+        TRY,
+        TWD,
+        ZAR,
+        BTC,
+        ETH,
+        XRP,
+        LTC,
+        BCH
     }
 }

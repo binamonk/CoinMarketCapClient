@@ -10,9 +10,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)CoinMarketCapClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CoinMarketCapClientV2.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\GlobalData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\GlobalDataEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ListingItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\ApiResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Metadata.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Quote.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entities\Ticker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Entities\TickerEntity.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Enums\ConvertEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Enums\FiatEnum.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ICoinMarketCapClientV2.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ICoinMarketCapClient.cs" />
   </ItemGroup>
 </Project>

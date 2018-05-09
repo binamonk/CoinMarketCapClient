@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System;
 
 namespace CoinMarketCap.Entities
 {
     /// <summary>
     /// Global market cap information entity.
     /// </summary>
+    [Obsolete("Public API Version 1 will be taken offline on November 30th, 2018. Please modify your application to use Version 2 prior to shutdown.")]
     public class GlobalDataEntity
     {
         /// <summary>

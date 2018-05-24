@@ -1,29 +1,48 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace CoinMarketCap.Entities
 {
+    /// <summary>
+    /// Global cryptocurrencies data.
+    /// </summary>
     public class GlobalData
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; } 
-        [JsonProperty("symbol")]
-        public string Symbol { get; set; } 
-        [JsonProperty("website_slug")]
-        public string WebsiteSlug { get; set; } 
-        [JsonProperty("Rank")]
-        public int Rank { get; set; } 
-        [JsonProperty("circulating_supply")]
-        public decimal CirculatingSupply { get; set; } 
-        [JsonProperty("total_supply")]
-        public decimal TotalSupply { get; set; } 
-        [JsonProperty("max_supply")]
-        public decimal MaxSupply { get; set; } 
+        /// <summary>
+        /// Number of active cryptocurrencies.
+        /// </summary>
+        [JsonProperty("active_cryptocurrencies")]
+        public int ActiveCryptocurrencies { get; set; }
+        /// <summary>
+        /// Number of active markets.
+        /// </summary>
+        [JsonProperty("active_markets")]
+        public int ActiveMarkets { get; set; }
+        /// <summary>
+        /// Bitcoin percentage of market capitalization.
+        /// </summary>
+        [JsonProperty("bitcoin_percentage_of_market_cap")]
+        public decimal BitcoinPercentageOfMarketCap { get; set; }
+        /// <summary>
+        /// Estimated value.
+        /// </summary>
         [JsonProperty("quotes")]
-        public Dictionary<string,GlobalData> Quotes { get; set; } 
+        public Dictionary<string,GlobalQuote> Quotes { get; set; }
+        /// <summary>
+        /// Last update in unix format.
+        /// </summary>
         [JsonProperty("last_updated")]
-        public long LastUpdated { get; set; } 
+        public long LastUpdated { get; set; }
+
+        /// <summary>
+        /// Last update in local datetime.
+        /// </summary>
+        public DateTime LastUpdatedDate
+        {
+            get => new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)
+                        .AddSeconds(LastUpdated)
+                        .ToLocalTime();
+        }
     }
 }

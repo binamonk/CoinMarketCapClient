@@ -2,6 +2,10 @@
 
 namespace CoinMarketCap.Entities
 {
+    /// <summary>
+    /// Wrapper for Api V2.0 responses.
+    /// </summary>
+    /// <typeparam name="T">Expected data type in the Data block.</typeparam>
     public class ApiResponse<T> where T : class
     {
         /// <summary>

@@ -5,7 +5,7 @@ using System.Text;
 namespace CoinMarketCap.Enums
 {
     /// <summary>
-    /// Available Fiat currencies and cryptos for conversion in CoinMarketCap Api V2.
+    /// Available Fiat currencies and Cryptos for conversion in CoinMarketCap Api V2.
     /// </summary>
     public enum CurrenciesEnum
     {
@@ -37,7 +37,13 @@ namespace CoinMarketCap.Enums
         /// Chinese Yuan.
         /// </summary>
         CNY,
+        /// <summary>
+        /// Czech Koruna.
+        /// </summary>
         CZK,
+        /// <summary>
+        /// Danish Krone.
+        /// </summary>
         DKK,
         /// <summary>
         /// Euro.
@@ -51,11 +57,17 @@ namespace CoinMarketCap.Enums
         /// Hong Kong Dollar
         /// </summary>
         HKD,
+        /// <summary>
+        /// Hungarian Forint.
+        /// </summary>
         HUF,
         /// <summary>
         /// Indonesian Rupiah.
         /// </summary>
         IDR,
+        /// <summary>
+        /// Israeli Shekel
+        /// </summary>
         ILS,
         /// <summary>
         /// Indian Rupee.
@@ -73,26 +85,77 @@ namespace CoinMarketCap.Enums
         /// Mexican Peso.
         /// </summary>
         MXN,
+        /// <summary>
+        /// Malaysian Ringgit.
+        /// </summary>
         MYR,
+        /// <summary>
+        /// Norwegian Krone.
+        /// </summary>
         NOK,
+        /// <summary>
+        /// New Zealand Dollar.
+        /// </summary>
         NZD,
+        /// <summary>
+        /// Philippine Piso.
+        /// </summary>
         PHP,
+        /// <summary>
+        /// Pakistani Rupee.
+        /// </summary>
         PKR,
+        /// <summary>
+        /// Polish Zloty.
+        /// </summary>
         PLN,
         /// <summary>
         /// Russian Rubble.
         /// </summary>
         RUB,
+        /// <summary>
+        /// Swedish Krona.
+        /// </summary>
         SEK,
+        /// <summary>
+        /// Singapore Dollar.
+        /// </summary>
         SGD,
+        /// <summary>
+        /// Thai Baht.
+        /// </summary>
         THB,
+        /// <summary>
+        /// Turkish Lira.
+        /// </summary>
         TRY,
+        /// <summary>
+        /// Taiwan New Dollar.
+        /// </summary>
         TWD,
+        /// <summary>
+        /// South African Rand.
+        /// </summary>
         ZAR,
+        /// <summary>
+        /// Bitcoin.
+        /// </summary>
         BTC,
+        /// <summary>
+        /// Ethereum.
+        /// </summary>
         ETH,
+        /// <summary>
+        /// Ripple.
+        /// </summary>
         XRP,
+        /// <summary>
+        /// Litecoin.
+        /// </summary>
         LTC,
+        /// <summary>
+        /// Bitcoin Cash.
+        /// </summary>
         BCH
     }
 }

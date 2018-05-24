@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoinMarketCap
+namespace CoinMarketCap.Core
 {
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    [Obsolete("Public API Version 1 will be taken offline on November 30th, 2018. Please modify your application to use Version 2 prior to shutdown.")]
     public interface ICoinMarketCapClient : IDisposable
     {
         /// <summary>

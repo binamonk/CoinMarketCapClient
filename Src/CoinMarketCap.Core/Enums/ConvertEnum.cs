@@ -9,7 +9,6 @@ namespace CoinMarketCap.Enums
     /// <summary>
     /// Available Fiat currencies in CoinMarketCap Api.
     /// </summary>
-    [Obsolete("Public API Version 1 will be taken offline on November 30th, 2018. Please modify your application to use Version 2 prior to shutdown.")]
     public enum ConvertEnum
     {
         /// <summary>

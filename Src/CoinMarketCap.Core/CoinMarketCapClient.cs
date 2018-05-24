@@ -5,13 +5,13 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
+using CoinMarketCap.Core;
 
 namespace CoinMarketCap
 {
     /// <summary>
     /// Coin Market Cap Api Client.
     /// </summary>
-    [Obsolete("Public API Version 1 will be taken offline on November 30th, 2018. Please modify your application to use Version 2 prior to shutdown.")]
     public class CoinMarketCapClient : ICoinMarketCapClient, IDisposable
     {
 
